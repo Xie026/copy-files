@@ -1,0 +1,68 @@
+import java.io.*;
+public class Buffered {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+        BufferedReader in = new BufferedReader(new FileReader("java/week15/test1.txt"));
+        BufferedWriter out = new BufferedWriter(new FileWriter("java/week15/test2.txt"));
+        String cnt;
+        while((cnt = in.readLine())!=null) {
+            out.write(cnt);
+            out.newLine();
+        }
+        in.close();
+        out.close();
+	}
+
+}
+
+
+
+
+
+import java.io.*;
+public class Stream {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+        InputStream in = new FileInputStream("java/week15/test1.txt");
+        OutputStream out = new FileOutputStream("java/week15/test2.txt");
+        try {
+            byte[] array = new byte[256];
+            while(true) {
+                int byteRead = in.read(array);
+                if(byteRead==-1) {
+                	break;
+                }
+                out.write(array,0,byteRead);
+            }
+        } catch(IOException ex) {
+            System.out.println(ex.toString());
+        }
+        in.close();
+        out.close();
+	}
+
+}
+
+
+
+
+
+import java.util.Scanner;
+import java.io.*;
+
+public class Test {
+    public static void main(String[] args) throws IOException {
+    	// TODO Auto-generated method stub
+        File in = new File("java/week15/test1.txt");
+        File out = new File("java/week15/test2.txt");
+        Scanner input = new Scanner(in);
+        PrintWriter output = new PrintWriter(out);
+        while(input.hasNextLine()) {
+            output.println(input.nextLine());
+        }
+        input.close();
+        output.close();
+    }
+}
